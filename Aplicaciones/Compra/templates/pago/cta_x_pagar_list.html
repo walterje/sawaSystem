@@ -1,0 +1,61 @@
+{% extends 'base/list.html' %}
+{% load static %}
+{% block head_list %}
+    <script src="{% static 'pago/js/cta_x_pagar_list.js' %}"></script>
+{% endblock %}
+
+{% block columns %}
+    <tr>
+        <th scope="col" style="width: 10%;">N°</th>
+        <th scope="col" style="width: 20%;">Nro. Cta.</th>
+        <th scope="col" style="width: 20%;">Proveedor</th>
+        <th scope="col" style="width: 20%;">Fecha Compra</th>
+        <th scope="col" style="width: 20%;">Condicion</th>
+        <th scope="col" style="width: 20%;">Fecha Plazo</th>
+        <th scope="col" style="width: 20%;">Cta. Por Pagar</th>
+        <th scope="col" style="width: 20%;">Saldo</th>
+        <th scope="col" style="width: 20%;">Estado</th>
+        <th scope="col" style="width: 20%;">Pago</th>
+
+    </tr>
+{% endblock %}
+
+{% block rows %}
+
+{% endblock %}
+{% block buttons_list %}
+
+{% endblock %}
+
+{% block javascript %}
+<div class="modal fade" id="myModelPag" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-lg" role="document">
+   <div class="modal-content">
+       <div class="modal-header">
+           <h5 class="modal-title" id="exampleModalLabel"><b><i class="fas fa-money"></i> Pagos </b></h5>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+           </button>
+       </div>
+       <div class="modal-body">
+           <table class="table table-bordered" id="tblPag">
+               <thead>
+               <tr>
+                   <th>Fecha Pago</th>
+                   <th>Monto Pagado</th>
+                   <th>Caja </th>
+                   <th>Cajero </th>
+                   <th>Forma Pago</th>
+                   <th>Efectivo</th>
+                   <th>vuelto</th>
+               </tr>
+               </thead>
+               <tbody>
+               </tbody>
+           </table>
+       </div>
+   </div>
+</div>
+</div>
+{% endblock %}

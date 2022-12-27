@@ -1,0 +1,311 @@
+{% load static %}
+<aside class="main-sidebar sidebar-light-primary elevation-4">
+    <a href="#" class="brand-link">
+        <img src="{% static 'img/ps.png' %}"
+             alt="AdminLTE Logo"
+             class="brand-image img-circle elevation-3"
+             style="opacity: .8">
+        <span class="brand-text font-weight-light">SAWA_SYS</span>
+    </a>
+    <div class="sidebar">
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img src="{{ request.user.get_imagen }}" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info">
+                <a href="#" class="d-block">{{ request.user.username }}</a>
+            </div>
+        </div>
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!--seccion mantenimientos--> 
+                <li class="nav-header">
+                     <!--Módulo de Inventario--> 
+                     <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-edit"></i>
+                            <p> Administracion<i class="fas fa-angle-left right"></i></p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <!--Empresa--> 
+                            <li class="nav-item">
+                                <a href="{% url 'Venta:company_update' %}" class="nav-link">
+                                   
+                                    <p> Compañia</p>
+                                </a>
+                            </li>
+                            <!--User--> 
+                            <li class="nav-item">
+                                <a href="{% url 'user:user_list' %}" class="nav-link">
+                                    <p>
+                                        User
+                                    </p>
+                                </a>
+                            </li>
+                            <!--Moneda--> 
+                            <li class="nav-item">
+                                <a href="{% url 'Caja:moneda_list' %}" class="nav-link">
+                                    <p>
+                                        Moneda
+                                    </p>
+                                </a>
+                            </li>
+                             <!--Forma pago cobro--> 
+                             <li class="nav-item">
+                                <a href="{% url 'Caja:forma_pag_cob_list' %}" class="nav-link">
+                                    <p>
+                                        Forma pago cobro
+                                    </p>
+                                </a>
+                            </li>
+                                 <!--Tipo producto--> 
+                                 <li class="nav-item">
+                                    <a href="{% url 'Producto:tipo_producto_list' %}" class="nav-link">
+                                       
+                                        <p> Tipo Productos</p>
+                                    </a>
+                                </li>
+                        </ul>
+                    <!---->
+                    <!--Módulo de Inventario--> 
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-boxes"></i>
+                            <p> Inventario<i class="fas fa-angle-left right"></i></p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                       
+                            <!--Producto--> 
+                            <li class="nav-item">
+                                <a href="{% url 'Producto:producto_list' %}" class="nav-link">
+                                    
+                                    <p> Productos</p>
+                                </a>
+                            </li>
+                            <!--Baja Stock--> 
+                            <li class="nav-item">
+                                <a href="{% url 'Producto:mov_stock_create' %}" class="nav-link">
+                                        
+                                    <p> Baja Stock</p>
+                                </a>
+                            </li>
+                            <!--Ajuste Inventario-->
+                            <li class="nav-item">
+                                <a href="{% url 'Producto:ajuste_stock_create' %}" class="nav-link">
+                                        
+                                    <p> Ajuste Stock</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!---->
+                    <!--Módulo de Proveedores--> 
+                    <li class="nav-item">
+                        <a href="{% url 'Compra:proveedor_list' %}" class="nav-link">
+                            <i class="fas fa-truck"></i>
+                            <p> Proveedores </p>
+                        </a>
+                    </li>
+                    <!---->
+                    <!--Módulo de Clientes--> 
+                    <li class="nav-item">
+                        <a href="{% url 'Venta:cliente_list' %}" class="nav-link">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>
+                                Clientes
+                            </p>
+                        </a>
+                    </li>
+                    <!---->
+                    <!--Modulo Compra-->
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-shopping-cart"></i>
+                            <p> Compra<i class="fas fa-angle-left right"></i></p>
+                        </a>
+                        <ul class="nav nav-treeview">
+
+                            <!--Orden Compra--> 
+                            <li class="nav-item">
+                                <a href="{% url 'Compra:orden_compra_list' %}" class="nav-link">
+                                    
+                                    <p>
+                                        Orden de Compra
+                                    </p>
+                                </a>
+                            </li>
+                             <!--Compras--> 
+                             <li class="nav-item">
+                                <a href="{% url 'Compra:compra_list' %}" class="nav-link">
+                                    
+                                    <p>
+                                        Compras
+                                    </p>
+                                </a>
+                            </li>   
+                              <!--Cta X Pagar--> 
+                              <li class="nav-item">
+                                <a href="{% url 'Compra:cta_x_pagar_list' %}" class="nav-link">
+                                
+                                    <p>
+                                        Cuenta por pagar
+                                    </p>
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    <!---->
+                    <!--Modulo Caja-->
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-cash-register"></i>
+                            <p> Caja<i class="fas fa-angle-left right"></i></p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                              <!--Caja--> 
+                              <li class="nav-item">
+                                <a href="{% url 'Caja:caja' %}" class="nav-link">
+    
+                                    <p>
+                                        Caja
+                                    </p>
+                                </a>
+                            </li>
+                              <!--Movimiento Caja
+                              <li class="nav-item">
+                                <a href="{% url 'Caja:movimiento_caja_list' %}" class="nav-link">
+    
+                                    <p>
+                                        Movimiento Caja
+                                    </p>
+                                </a>
+                            </li>--> 
+                              <!--Ingresos varios-->
+                              <!--
+                              <li class="nav-item">
+                                <a href="{% url 'Caja:movimiento_caja_create_ingresos_varios' %}" class="nav-link">
+    
+                                    <p>
+                                        Registrar Ingresos Varios
+                                    </p>
+                                </a>
+                            </li>--> 
+                                 <!--Egresos varios--> 
+                                 <!--
+                                 <li class="nav-item">
+                                    <a href="{% url 'Caja:movimiento_caja_create_egresos_varios' %}" class="nav-link">
+        
+                                        <p>
+                                            Registrar Egresos Varios
+                                        </p>
+                                    </a>
+                                </li>
+                          -->
+                            <!--Pago--> 
+                            <li class="nav-item">
+                                <a href="{% url 'Compra:pago_create' %}" class="nav-link">
+                                    <p>
+                                        Registar Pago
+                                    </p>
+                                </a>
+                            </li>
+                            <!--Cobro--> 
+                            <li class="nav-item">
+                                <a href="{% url 'Venta:cobro_create' %}" class="nav-link">
+                                    <p>
+                                        Registar Cobro
+                                    </p>
+                                </a>
+                            </li>
+                          
+                            
+                        </ul>
+                    </li>
+                    <!---->
+                    <!--Modulo Venta-->
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-shopping-cart"></i>
+                            <p> Venta<i class="fas fa-angle-left right"></i></p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <!--Módulo de Pedidos para la orden de Venta--> 
+                            <li class="nav-item">
+                                <a href="{% url 'Venta:orden_venta_list' %}" class="nav-link">
+                                    <p>
+                                        Orden de Venta
+                                    </p>
+                                </a>
+                            </li>
+                            <!--Módulo de Ventas--> 
+                            <li class="nav-item">
+                                <a href="{% url 'Venta:venta_list' %}"class="nav-link">
+                                    <p>
+                                        Ventas
+                                    </p>
+                                </a>
+                            </li>
+                                <!--Cta X cobrar--> 
+                                <li class="nav-item">
+                                    <a href="{% url 'Venta:cta_x_cobrar_list' %}" class="nav-link">
+                                    
+                                        <p>
+                                            Cuenta por cobrar
+                                        </p>
+                                    </a>
+                                </li>
+                        </ul>
+                    </li>
+                    <!---->
+                    <!--Modulo Reporte-->
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-calendar"></i>
+                            <p> Reporte<i class="fas fa-angle-left right"></i></p>
+                        </a>
+                        <ul class="nav nav-treeview">   
+                            <!--Módulo de Compras--> 
+                            <li class="nav-item">
+                                <a href="{% url 'Reporte:compra_reporte' %}" class="nav-link">
+                                    <i class="nav-icon fas fa-chart-bar"></i>
+                                    <p>
+                                        Reporte Compra
+                                    </p>
+                                </a>
+                            </li>
+                            <!--Módulo de Ventas--> 
+                            <li class="nav-item">
+                                <a href="{% url 'Reporte:venta_reporte' %}" class="nav-link">
+                                    <i class="nav-icon fas fa-chart-bar"></i>
+                                    <p>
+                                        Reporte ventas
+                                    </p>
+                                </a>
+                            </li>
+                            <!--Módulo de Caja--> 
+                            <li class="nav-item">
+                                <a href="{% url 'Reporte:movimiento_caja_reporte' %}" class="nav-link">
+                                    <i class="nav-icon fas fa-chart-bar"></i>
+                                    <p>
+                                        Reporte Mov Caja
+                                    </p>
+                                </a>
+                            </li>
+
+                             <!--Módulo de Inventario--> 
+                             <li class="nav-item">
+                                <a href="{% url 'Reporte:inventario_reporte' %}" class="nav-link">
+                                    <i class="nav-icon fas fa-chart-bar"></i>
+                                    <p>
+                                        Reporte Mov Inventario
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</aside>

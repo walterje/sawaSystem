@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+{% load static %}
+{% load humanize %}
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        * {
+            color: black;
+        }
+        #apartado1{
+            width:100%;
+            height:100%;
+            border:3px solid gray;
+            border-radius:22px;
+        }
+        #apartado2{
+            border: 2px solid grey;
+            border-width:2px;
+            width:50%;
+        }
+
+        body {
+            font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
+            padding: 0;
+            margin: 0;
+            color: black;
+        }
+
+        .name-company {
+            font-size: 20px;
+            padding: 0;
+            margin: 0;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: left;
+        }
+
+        table thead tr th {
+            border: 1px solid black !important;
+            padding: 3px;
+        }
+
+        table tbody tr td {
+            border: 1px solid white;
+            padding: 3px;
+        }
+
+        .img-logo {
+            margin-top: 10px;
+            width: 75px;
+            height: 75px;
+            margin-bottom: 10px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container-fluid" id="apartado1">
+    <table class="table" style="width: 100%; ">
+        <thead></thead>
+        <tbody>
+            <tr>
+                <td colspan="3" class="text-left">
+                    <br>
+                    <br>
+                    <h1 class="name-company">{{ company.nombre }}</h1>
+                    {{ company.direccion }}<br>   
+                    <b style="text-align: left">Celular:</b> {{ company.celular }}<br>
+                    <b style="text-align: left">Telefono:</b> {{ company.telefono }}<br>
+                    <b class="text-right">email:</b> {{ company.email}}<br>
+                    <hr size="2px" color="black" />
+                </td>
+                <td colspan="3" class="text-right">
+                    <br>
+                    <br>
+                    <b class="text-left"> <div id="apartado2">Gs. </b> {{ cobro.monto_cobrado |intcomma }}</b></div>
+                    <b style="text-align: right"> RECIBO DE DINERO </b><br>
+                    <b style="text-align: right"> N°</b>{{cobro.id}} <br>
+                    <h6 class="text-right">{{ cobro.fecha_cobro }}</h6><br>
+                    
+                </td>
+                
+            </tr>
+        </tbody>
+    </table>
+    <table class="table" style="width: 100%;">
+        <thead></thead>
+        <tbody>
+    <tr>
+    <td>
+        <b>Recibi de:</b>{{ cobro.cuenta_x_cobrar.venta.cliente.nombre }}
+        {{ cobro.cuenta_x_cobrar.venta.cliente.apellido }}<br>
+        <b>RUC:</b> {{ cobro.cuenta_x_cobrar.venta.cliente.ci |intcomma}}<br>
+        <b>La suma de Guaranies:</b> {{ monto_cobrado }} <br>
+        <b>En concepto de: </b><br><br>
+        <tr>
+            <td colspan="3" class="text-right"><b>Firma</b> </td>
+        </tr>
+
+    </td>
+</tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

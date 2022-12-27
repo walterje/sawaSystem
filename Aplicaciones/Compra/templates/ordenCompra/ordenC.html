@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+{% load static %}
+{% load humanize %}
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        * {
+            color: black;
+        }
+
+        body {
+            font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
+            padding: 0;
+            margin: 0;
+            color: black;
+        }
+
+        .name-company {
+            font-size: 15px;
+            padding: 0;
+            margin: 0;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        table thead tr th {
+            border: 1px solid black !important;
+            padding: 3px;
+        }
+
+        table tbody tr td {
+            border: 1px solid black;
+            padding: 3px;
+        }
+
+        .img-logo {
+            margin-top: 10px;
+            width: 75px;
+            height: 75px;
+            margin-bottom: 10px;
+        }
+
+    </style>
+</head>
+<body >
+<div class="container-fluid"  >
+    <table class="table" style="width: 100%; ">
+        <thead></thead>
+        <tbody>
+            <tr>
+                <td colspan="3" class="text-center">
+                    <h1 class="name-company">{{ ordenCompra.company.nombre }}</h1>
+                    {{ ordenCompra.company.direccion }}<br>
+                    <b>Celular:</b>{{ ordenCompra.company.celular|upper }}<br>
+                    <b>Telefono:</b>{{ ordenCompra.company.telefono|upper }}<br>
+                    <b>email:</b>{{ ordenCompra.company.email}}<br>
+                </td>
+                <td style="text-align: center">
+                    <b class="name-company" >Orden de Compra</b> <br>
+                    <b>N°: </b> {{ ordenCompra.id }}<br>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table" style="width: 100%; ">
+        <thead></thead>
+        <tbody>
+            <tr>
+                <td colspan="3" class="text-left">
+                    <b>Proveedor:</b> {{ ordenCompra.proveedor.nombre }}<br>
+                    <b>Ruc:</b> {{ ordenCompra.proveedor.ruc }}<br>
+                    <b>Fecha emision:</b> {{ordenCompra.fecha_orden | date:"d/m/Y"}}<br>
+                    <b>Emitido por:</b>{{  ordenCompra.user.first_name  }} {{ordenCompra.user.last_name}}<br>
+
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+
+    <table class="table" style="width: 100%;">
+        <thead>
+        <tr style="border: 1px solid black;">
+            <th style="width: 40%;">Producto</th>
+            <th style="width: 20%;">Cantidad</th>
+            <th style="width: 20%;">Precio</th>
+            <th style="width: 20%;" class="text-right">Subtotal</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for d in ordenCompra.ordencompradet_set.all %}
+            <tr {% if forloop.first %}style="padding-top: 3px;" {% endif %}>
+                <td>{{ d.producto.nombre_producto }}</td>
+                <td class="text-left">{{ d.cantidad|intcomma }}</td>
+                <td class="text-left">{{ d.precio |intcomma}} </td>
+                <td style="text-align: right;">{{ d.subtotal|intcomma }} </td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td colspan="3" class="text-right"><b>Subtotal</b></td>
+            <td style="text-align: right">{{ ordenCompra.subtotal |intcomma}} </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="text-right"><b>Excentas </b></td>
+            <td style="text-align: right">{{ ordenCompra.iva_0 |intcomma}} </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="text-right"><b>IVA 5% </b></td>
+            <td style="text-align: right">{{ ordenCompra.iva_5|intcomma }} </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="text-right"><b>IVA 10%</b></td>
+            <td style="text-align: right">{{ ordenCompra.iva_10|intcomma }} </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="text-right"><b>Total a pagar  Guaranies</b><br> {{total}}</td>
+            <td style="text-align: right" id='field-number'>{{ ordenCompra.total |intcomma}} </td>
+        </tr>
+      
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

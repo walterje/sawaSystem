@@ -1,0 +1,101 @@
+{% extends 'base/layout.html' %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'lib/datatables-1.10.20/css/dataTables.bootstrap4.min.css' %}"/>
+    <link rel="stylesheet"
+        href="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/css/responsive.bootstrap4.min.css' %}"/>
+    <script src="{% static 'lib/datatables-1.10.20/js/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'lib/datatables-1.10.20/js/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/dataTables.responsive.min.js' %}"></script>
+    <script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/responsive.bootstrap4.min.js' %}"></script>
+
+    {% block head_list %}
+
+    {% endblock %}
+
+{% endblock %}
+{% block content %}
+    <div class="card card-secondary">
+        <div class="card-header">
+            <h3 class="card-title">
+                <i class="fas fa-list"></i>
+                {{ title }}
+            </h3>
+        </div>
+        <div class="card-body">
+            <table class="table" id="data">
+                <thead>
+                {% block columns %}
+                <div class="container-fluid">
+                    <p>
+                        <b>Proveedor:</b> {{ compra.proveedor.nombre }}<br>
+                        <b>RUC:</b> {{ compra.proveedor.ruc }}<br>
+                        <b>Fecha :</b> {{compra.fecha_compra}}<br>
+                    </p>
+                  
+                </div>
+                {% endblock %}
+                </thead>
+                <tbody>
+                {% block rows %}
+                <table class="table" style="width: 100%;">
+                    <thead>
+                    <tr style="border: 1px solid black;">
+                        <th style="width: 40%;">Producto</th>
+                        <th style="width: 20%;">Cantidad</th>
+                        <th style="width: 20%;">Precio</th>
+                        <th style="width: 20%;" class="text-right">Subtotal</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for d in compra.comprasdet_set.all %}
+                        <tr {% if forloop.first %}style="padding-top: 3px;" {% endif %}>
+                            <td>{{ d.producto.nombre_producto }}</td>
+                            <td class="text-left">{{ d.cantidad }}</td>
+                            <td class="text-left">{{ d.precio }} Gs.</td>
+                            <td style="text-align: right;">{{ d.subtotal }} Gs.</td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td colspan="3" class="text-right"><b>Subtotal</b></td>
+                        <td style="text-align: right">{{ compra.subtotal }} Gs.</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="text-right"><b>Excentas</b></td>
+                        <td style="text-align: right">{{ compra.iva_0}} Gs.</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="text-right"><b>Grav. 5%</b></td>
+                        <td style="text-align: right">{{ compra.iva_5}} Gs.</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="text-right"><b>Grav. 10%</b></td>
+                        <td style="text-align: right">{{ compra.iva_10}} Gs.</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="text-right"><b>Total a pagar</b></td>
+                        <td style="text-align: right">{{ compra.total }} Gs.</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            <p class="text-uppercase font-weight-bold text-center">
+                                Total de productos {{ compra.compradet_set.all.count }}<br>
+                            </p>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table> 
+                   <a href="#" class="btn btn-secondary btn-flat btnTest">Imprimir</a>
+                    <a href="#" class="btn btn-secondary btn-file"> Enviar</a> 
+                    <a href="#" class="btn btn-danger btn-flat"><i class="fas fa-times"></i> Cancelar</a>
+                {% endblock %}
+                </tbody>
+            </table>
+        </div>
+        {% block button %}
+  
+        {% endblock %}
+        
+        
+    </div>
+{% endblock %}

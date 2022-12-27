@@ -1,0 +1,26 @@
+{% extends 'base/list.html' %}
+{% load static %}
+{% block head_list %}
+    <script src="{% static 'movimiento_caja/js/list.js' %}"></script>
+{% endblock %}
+{% block columns %}
+<tr>
+    <th scope="col">Nro.</th>
+    <th scope="col">caja</th>
+    <th scope="col">Fecha Movimiento</th>
+    <th scope="col">Descripcion</th>
+    <th scope="col">Tipo Movimiento</th>
+    <th scope="col">Monto Inicial</th>
+    <th scope="col">Monto Ingreso</th>
+    <th scope="col">Monto Egreso</th>
+    <th scope="col">Monto Cierre</th>
+</tr>
+
+{% endblock %}
+
+{% block rows %}
+
+{% endblock %}
+{% block javascript %}
+
+{% endblock %}
